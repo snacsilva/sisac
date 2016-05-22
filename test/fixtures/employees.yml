@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: employees
+#
+#  id          :integer          not null, primary key
+#  function_id :integer
+#  sector_id   :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  funcao_id: 
+  setor_id: 
+
+two:
+  funcao_id: 
+  setor_id: 

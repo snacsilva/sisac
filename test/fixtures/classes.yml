@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: classes
+#
+#  id            :integer          not null, primary key
+#  codigo        :string
+#  course_id     :integer
+#  discipline_id :integer
+#  student_id    :integer
+#  num_aluno     :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  professor_id  :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: 
+  course_id: 
+  discipline_id: 
+  study_id: 
+  num_aluno: 
+
+two:
+  codigo: 
+  course_id: 
+  discipline_id: 
+  study_id: 
+  num_aluno: 
