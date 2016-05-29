@@ -10,5 +10,5 @@
 #
 
 class Discipline < ActiveRecord::Base
-  has_many :courses
+  has_many :classes
 end

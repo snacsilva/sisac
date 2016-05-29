@@ -1,4 +1,5 @@
-<%= form_for(@student) do |f| %>
+
+<%= form_for @student do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
@@ -11,17 +12,62 @@
     </div>
   <% end %>
 
-    <%= yield %>
-    
+  <%= f.fields_for :user do |ff| %>
     <div class="field">
-      <%= f.label :course_id %><br>
-      <%= f.text_field :course %>
+      <%= ff.label :name %><br>
+      <%= ff.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label :classe_id %><br>
-      <%= f.text_field :classe_id %>
-      </div>
+      <%= ff.label :data_nascimento %><br>
+      <%= ff.date_select :data_nascimento, start_year: 1950 %>
+    </div>
+    <div class="field">
+      <%= ff.label :num_identidade %><br>
+      <%= ff.text_field :num_identidade %>
+    </div>
+    <div class="field">
+      <%= ff.label :cpf %><br>
+      <%= ff.text_field :cpf %>
+    </div>
+    <div class="field">
+      <%= ff.label :cidade %><br>
+      <%= ff.text_field :cidade %>
+    </div>
+    <div class="field">
+      <%= ff.label :estado %><br>
+      <%= ff.text_field :estado %>
+    </div>
+    <div class="field">
+      <%= ff.label :telefone %><br>
+      <%= ff.text_field :telefone %>
+    </div>
+    <div class="field">
+      <%= ff.label :celular %><br>
+      <%= ff.text_field :celular %>
+    </div>
+    <div class="field">
+      <%= ff.label :email %><br>
+      <%= ff.text_field :email %>
+    </div>
+    <div class="field">
+      <%= ff.label :login %><br>
+      <%= ff.text_field :login %>
+    </div>
+    <div class="field">
+      <%= ff.label :password %><br>
+      <%= ff.password_field :password %>
+    </div>
+    <div class="field">
+      <%= ff.label :password_confirmation %><br>
+      <%= ff.password_field :password_confirmation %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :course %><br>
+    <%= f.collection_select :course, Course.all, :id, :nome %>
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag %>
   </div>
 <% end %>

@@ -7,17 +7,12 @@
 
 <p>
   <strong>Course:</strong>
-  <%= @class.course %>
+  <%= @class.course.nome %>
 </p>
 
 <p>
   <strong>Discipline:</strong>
-  <%= @class.discipline %>
-</p>
-
-<p>
-  <strong>Study:</strong>
-  <%= @class.study %>
+  <%= @class.discipline.nome %>
 </p>
 
 <p>
@@ -25,5 +20,5 @@
   <%= @class.num_aluno %>
 </p>
 
-<%= link_to 'Edit', edit_class_path(@class) %> |
+<%= link_to 'Edit', edit_classe_path(@class) %> |
 <%= link_to 'Back', classes_path %>

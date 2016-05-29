@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521214147) do
+ActiveRecord::Schema.define(version: 20160527005321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20160521214147) do
     t.string   "codigo"
     t.integer  "course_id"
     t.integer  "discipline_id"
-    t.integer  "student_id"
     t.integer  "num_aluno"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 20160521214147) do
   add_index "classes", ["course_id"], name: "index_classes_on_course_id", using: :btree
   add_index "classes", ["discipline_id"], name: "index_classes_on_discipline_id", using: :btree
   add_index "classes", ["professor_id"], name: "index_classes_on_professor_id", using: :btree
-  add_index "classes", ["student_id"], name: "index_classes_on_student_id", using: :btree
 
   create_table "coordinators", force: :cascade do |t|
     t.integer  "course_id"
@@ -42,21 +40,18 @@ ActiveRecord::Schema.define(version: 20160521214147) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "nome"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "discipline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "student_id"
   end
 
-  add_index "courses", ["discipline_id"], name: "index_courses_on_discipline_id", using: :btree
+  add_index "courses", ["student_id"], name: "index_courses_on_student_id", using: :btree
 
   create_table "disciplines", force: :cascade do |t|
     t.string   "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "course_id"
   end
-
-  add_index "disciplines", ["course_id"], name: "index_disciplines_on_course_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.integer  "function_id"
@@ -76,12 +71,10 @@ ActiveRecord::Schema.define(version: 20160521214147) do
 
   create_table "professors", force: :cascade do |t|
     t.integer  "course_id"
-    t.integer  "classe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "professors", ["classe_id"], name: "index_professors_on_classe_id", using: :btree
   add_index "professors", ["course_id"], name: "index_professors_on_course_id", using: :btree
 
   create_table "sectors", force: :cascade do |t|
@@ -91,14 +84,14 @@ ActiveRecord::Schema.define(version: 20160521214147) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.integer  "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "classe_id"
+    t.integer  "user_id"
+    t.integer  "course_id"
   end
 
-  add_index "students", ["classe_id"], name: "index_students_on_classe_id", using: :btree
   add_index "students", ["course_id"], name: "index_students_on_course_id", using: :btree
+  add_index "students", ["user_id"], name: "index_students_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -119,14 +112,11 @@ ActiveRecord::Schema.define(version: 20160521214147) do
   add_foreign_key "classes", "courses"
   add_foreign_key "classes", "disciplines"
   add_foreign_key "classes", "professors"
-  add_foreign_key "classes", "students"
   add_foreign_key "coordinators", "courses"
-  add_foreign_key "courses", "disciplines"
-  add_foreign_key "disciplines", "courses"
+  add_foreign_key "courses", "students"
   add_foreign_key "employees", "functions"
   add_foreign_key "employees", "sectors"
-  add_foreign_key "professors", "classes"
   add_foreign_key "professors", "courses"
-  add_foreign_key "students", "classes"
   add_foreign_key "students", "courses"
+  add_foreign_key "students", "users"
 end

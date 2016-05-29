@@ -8,23 +8,21 @@
       <th>Codigo</th>
       <th>Course</th>
       <th>Discipline</th>
-      <th>Study</th>
       <th>Num aluno</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @classes.each do |class| %>
+    <% @classes.each do |classe| %>
       <tr>
-        <td><%= class.codigo %></td>
-        <td><%= class.course %></td>
-        <td><%= class.discipline %></td>
-        <td><%= class.study %></td>
-        <td><%= class.num_aluno %></td>
-        <td><%= link_to 'Show', class %></td>
-        <td><%= link_to 'Edit', edit_class_path(class) %></td>
-        <td><%= link_to 'Destroy', class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= classe.codigo %></td>
+        <td><%= classe.course.nome %></td>
+        <td><%= classe.discipline.nome %></td>
+        <td><%= classe.num_aluno %></td>
+        <td><%= link_to 'Show', classe %></td>
+        <td><%= link_to 'Edit', edit_classe_path(classe) %></td>
+        <td><%= link_to 'Destroy', classe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Classe', new_class_path %>
+<%= link_to 'New Classe', new_classe_path %>

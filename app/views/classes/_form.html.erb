@@ -17,15 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :course_id %><br>
-    <%= f.text_field :course_id %>
+    <%= f.collection_select(:course_id, Course.all, :id, :nome, include_blank: true) %>
   </div>
   <div class="field">
     <%= f.label :discipline_id %><br>
-    <%= f.text_field :discipline_id %>
-  </div>
-  <div class="field">
-    <%= f.label :study_id %><br>
-    <%= f.text_field :study_id %>
+    <%= f.collection_select(:discipline_id, Discipline.all, :id, :nome, include_blank: true) %>
   </div>
   <div class="field">
     <%= f.label :num_aluno %><br>

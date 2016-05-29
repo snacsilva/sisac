@@ -11,8 +11,6 @@
 
 class Course < ActiveRecord::Base
   belongs_to :student
-  has_many :professors
-  has_many :disciplines
   belongs_to :coordinator
-  has_many :disciplines
+  has_many :classes
 end
