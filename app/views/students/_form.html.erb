@@ -65,7 +65,7 @@
 
   <div class="field">
     <%= f.label :course %><br>
-    <%= f.collection_select :course, Course.all, :id, :nome %>
+    <%= f.collection_select :course_id, Course.all, :id, :nome, :prompt => true %>
   </div>
   <div class="actions">
     <%= submit_tag %>

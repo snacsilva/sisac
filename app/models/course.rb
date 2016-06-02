@@ -10,7 +10,7 @@
 #
 
 class Course < ActiveRecord::Base
-  belongs_to :student
+  has_many :students
   belongs_to :coordinator
   has_many :classes
 end

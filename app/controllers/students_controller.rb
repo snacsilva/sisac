@@ -18,6 +18,7 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @student.build_user
+    @student.build_course
   end
 
   # GET /students/1/edit
@@ -73,7 +74,8 @@ class StudentsController < ApplicationController
 
     def set_user
       @user = User.all
-    end
+      end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
