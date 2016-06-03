@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
+        User.update(Student.last.user.id,login: "A"+Student.last.id.to_s)
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else

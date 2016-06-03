@@ -28,6 +28,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
+        User.update(Employee.last.user.id, login:"F"+Employee.last.id.to_s)
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
       else
