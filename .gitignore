@@ -14,3 +14,5 @@
 /.idea
 /config/database.yml
 
+# these should all be checked in to normalize the environment:
+ Gemfile, Gemfile.lock, .ruby-version, .ruby-gemset
