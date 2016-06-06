@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :professors
   resources :classes
