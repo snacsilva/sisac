@@ -19,7 +19,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_one :employee
+  has_one :coordinator
   has_one :student
 
   has_secure_password

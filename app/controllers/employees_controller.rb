@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
 
   # GET /employees
   # GET /employees.json
@@ -15,6 +17,10 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
+    @employee.build_user
+    @employee.build_professor
+    @employee.build_coordinator
+
   end
 
   # GET /employees/1/edit
@@ -29,6 +35,8 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       if @employee.save
         User.update(Employee.last.user.id, login:"F"+Employee.last.id.to_s)
+
+
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
       else
@@ -68,8 +76,27 @@ class EmployeesController < ApplicationController
       @employee = Employee.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+
+    def set_user
+      @user = User.all
+    end
+
+    def set_professor
+      @professor = Professor.all
+    end
+
+    def set_coordenador
+      @coordinator = Coordinator.all
+    end
+
+
+  # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:funcao_id, :setor_id)
+      params.require(:employee).permit(:function_id, :sector_id, :set_coordenador,
+                                       :set_professor, :user_id, :set_user,
+                                       :user_attributes => [:id, :name, :data_nascimento,
+                                                            :num_identidade, :cpf, :cidade,
+                                                            :estado, :telefone, :celular, :email,
+                                                            :login, :password, :password_confirmation])
     end
 end

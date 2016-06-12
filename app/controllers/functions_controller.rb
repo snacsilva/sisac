@@ -69,6 +69,6 @@ class FunctionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def function_params
-      params.require(:function).permit(:nome)
+      params.require(:function).permit(:name)
     end
 end

@@ -2,11 +2,11 @@
 #
 # Table name: professors
 #
-#  id         :integer          not null, primary key
-#  course_id  :integer
-#  classe_id  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  course_id   :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  employee_id :integer
 #
 
 class Professor < ActiveRecord::Base

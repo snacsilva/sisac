@@ -13,7 +13,7 @@
   <tbody>
     <% @functions.each do |function| %>
       <tr>
-        <td><%= function.nome %></td>
+        <td><%= function.name %></td>
         <td><%= link_to 'Show', function %></td>
         <td><%= link_to 'Edit', edit_function_path(function) %></td>
         <td><%= link_to 'Destroy', function, method: :delete, data: { confirm: 'Are you sure?' } %></td>

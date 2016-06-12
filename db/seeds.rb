@@ -7,6 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 admin = User.create([name: 'Admin', login: 'admin', password_digest: 'Adm1n1s7r@dor' ])
-Function.create(nome:'Professor')
-Function.create(nome:'Coordenador')
-Function.create(nome:'Atendente')
+Function.create(name:'Professor')
+Function.create(name:'Coordenador')
+Function.create(name:'Atendente')

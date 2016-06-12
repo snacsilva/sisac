@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529231955) do
+ActiveRecord::Schema.define(version: 20160612124307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,14 +32,16 @@ ActiveRecord::Schema.define(version: 20160529231955) do
 
   create_table "coordinators", force: :cascade do |t|
     t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "employee_id"
   end
 
   add_index "coordinators", ["course_id"], name: "index_coordinators_on_course_id", using: :btree
+  add_index "coordinators", ["employee_id"], name: "index_coordinators_on_employee_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "nome"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "student_id"
@@ -48,7 +50,7 @@ ActiveRecord::Schema.define(version: 20160529231955) do
   add_index "courses", ["student_id"], name: "index_courses_on_student_id", using: :btree
 
   create_table "disciplines", force: :cascade do |t|
-    t.string   "nome"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,32 +58,44 @@ ActiveRecord::Schema.define(version: 20160529231955) do
   create_table "employees", force: :cascade do |t|
     t.integer  "function_id"
     t.integer  "sector_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+    t.integer  "coordinator_id"
   end
 
+  add_index "employees", ["coordinator_id"], name: "index_employees_on_coordinator_id", using: :btree
   add_index "employees", ["function_id"], name: "index_employees_on_function_id", using: :btree
   add_index "employees", ["sector_id"], name: "index_employees_on_sector_id", using: :btree
+  add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
   create_table "functions", force: :cascade do |t|
-    t.string   "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "employee_id"
   end
+
+  add_index "functions", ["employee_id"], name: "index_functions_on_employee_id", using: :btree
 
   create_table "professors", force: :cascade do |t|
     t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "employee_id"
   end
 
   add_index "professors", ["course_id"], name: "index_professors_on_course_id", using: :btree
+  add_index "professors", ["employee_id"], name: "index_professors_on_employee_id", using: :btree
 
   create_table "sectors", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "employee_id"
   end
+
+  add_index "sectors", ["employee_id"], name: "index_sectors_on_employee_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -115,10 +129,16 @@ ActiveRecord::Schema.define(version: 20160529231955) do
   add_foreign_key "classes", "disciplines"
   add_foreign_key "classes", "professors"
   add_foreign_key "coordinators", "courses"
+  add_foreign_key "coordinators", "employees"
   add_foreign_key "courses", "students"
+  add_foreign_key "employees", "coordinators"
   add_foreign_key "employees", "functions"
   add_foreign_key "employees", "sectors"
+  add_foreign_key "employees", "users"
+  add_foreign_key "functions", "employees"
   add_foreign_key "professors", "courses"
+  add_foreign_key "professors", "employees"
+  add_foreign_key "sectors", "employees"
   add_foreign_key "students", "classes"
   add_foreign_key "students", "courses"
   add_foreign_key "students", "users"

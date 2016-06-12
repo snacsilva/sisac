@@ -2,12 +2,12 @@
 
 <p>
   <strong>Course:</strong>
-  <%= @coordinator.course %>
+  <%= @coordinator.courses.name %>
 </p>
 
 <p>
   <strong>Employee:</strong>
-  <%= @coordinator.employee %>
+  <%= @coordinator.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_coordinator_path(@coordinator) %> |

@@ -6,7 +6,6 @@
 #  codigo        :string
 #  course_id     :integer
 #  discipline_id :integer
-#  student_id    :integer
 #  num_aluno     :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

@@ -2,11 +2,11 @@
 #
 # Table name: courses
 #
-#  id            :integer          not null, primary key
-#  nome          :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  discipline_id :integer
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  student_id :integer
 #
 
 class Course < ActiveRecord::Base

@@ -18,6 +18,10 @@
       <%= ff.text_field :name %>
     </div>
     <div class="field">
+       <%= f.label :course %><br>
+       <%= f.collection_select :course_id, Course.all, :id, :name, :prompt => true %>
+    </div>
+    <div class="field">
       <%= ff.label :data_nascimento %><br>
       <%= ff.date_select :data_nascimento, start_year: 1950 %>
     </div>
@@ -61,10 +65,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :course %><br>
-    <%= f.collection_select :course_id, Course.all, :id, :nome, :prompt => true %>
-  </div>
+
   <div class="actions">
     <%= submit_tag %>
   </div>

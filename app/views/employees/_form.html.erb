@@ -11,14 +11,67 @@
     </div>
   <% end %>
 
+    <%= f.fields_for :user do |ff| %>
+        <div class="field">
+          <%= ff.label :name %><br>
+          <%= ff.text_field :name %>
+        </div>
+        <div class="field">
+          <%= ff.label :data_nascimento %><br>
+          <%= ff.date_select :data_nascimento, start_year: 1950 %>
+        </div>
+        <div class="field">
+          <%= ff.label :num_identidade %><br>
+          <%= ff.text_field :num_identidade %>
+        </div>
+        <div class="field">
+          <%= ff.label :cpf %><br>
+          <%= ff.text_field :cpf %>
+        </div>
+        <div class="field">
+          <%= ff.label :cidade %><br>
+          <%= ff.text_field :cidade %>
+        </div>
+        <div class="field">
+          <%= ff.label :estado %><br>
+          <%= ff.text_field :estado %>
+        </div>
+        <div class="field">
+          <%= ff.label :telefone %><br>
+          <%= ff.text_field :telefone %>
+        </div>
+        <div class="field">
+          <%= ff.label :celular %><br>
+          <%= ff.text_field :celular %>
+        </div>
+        <div class="field">
+          <%= ff.label :email %><br>
+          <%= ff.text_field :email %>
+        </div>
+        <div class="field">
+          <%= ff.label :login %><br>
+          <%= ff.text_field :login %>
+        </div>
+        <div class="field">
+          <%= ff.label :password %><br>
+          <%= ff.password_field :password %>
+        </div>
+        <div class="field">
+          <%= ff.label :password_confirmation %><br>
+          <%= ff.password_field :password_confirmation %>
+        </div>
+    <% end %>
   <div class="field">
-    <%= f.label :funcao %><br>
-    <%= f.text_field functions_url %>
+    <%= f.label :function %><br>
+    <%= f.collection_select :function_id, Function.all, :id, :name, :prompt => true %>
   </div>
+
   <div class="field">
-    <%= f.label :setor_id %><br>
-    <%= f.text_field :setor_id %>
+    <%= f.label :sector %><br>
+    <%= f.collection_select :sector_id, Sector.all, :id, :name, :prompt => true %>
   </div>
+
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>
