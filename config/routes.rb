@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :students
   resources :coordinators
   resources :employees
-  resources :functions
+  # resources :functions
   resources :sectors
   resources :disciplines
   resources :courses

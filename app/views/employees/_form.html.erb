@@ -63,7 +63,7 @@
     <% end %>
   <div class="field">
     <%= f.label :function %><br>
-    <%= f.collection_select :function_id, Function.all, :id, :name, :prompt => true %>
+    <%= f.select :function, :colection => Employee.functions, :prompt => 'Please select'%>
   </div>
 
   <div class="field">
@@ -71,7 +71,10 @@
     <%= f.collection_select :sector_id, Sector.all, :id, :name, :prompt => true %>
   </div>
 
-  <br>
+
+
+
+    <br>
   <div class="actions">
     <%= f.submit %>
   </div>

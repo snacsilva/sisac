@@ -16,7 +16,7 @@
     <% @employees.each do |employee| %>
       <tr>
         <td><%= employee.user.name %></td>
-        <td><%= employee.function.name %></td>
+        <td><%= employee.function %></td>
         <td><%= employee.sector.name %></td>
         <td><%= link_to 'Show', employee %></td>
         <td><%= link_to 'Edit', edit_employee_path(employee) %></td>

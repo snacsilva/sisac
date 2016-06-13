@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160612124307) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.integer  "function_id"
+    t.integer  "function"
     t.integer  "sector_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -65,18 +65,8 @@ ActiveRecord::Schema.define(version: 20160612124307) do
   end
 
   add_index "employees", ["coordinator_id"], name: "index_employees_on_coordinator_id", using: :btree
-  add_index "employees", ["function_id"], name: "index_employees_on_function_id", using: :btree
   add_index "employees", ["sector_id"], name: "index_employees_on_sector_id", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
-
-  create_table "functions", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "employee_id"
-  end
-
-  add_index "functions", ["employee_id"], name: "index_functions_on_employee_id", using: :btree
 
   create_table "professors", force: :cascade do |t|
     t.integer  "course_id"
@@ -132,10 +122,8 @@ ActiveRecord::Schema.define(version: 20160612124307) do
   add_foreign_key "coordinators", "employees"
   add_foreign_key "courses", "students"
   add_foreign_key "employees", "coordinators"
-  add_foreign_key "employees", "functions"
   add_foreign_key "employees", "sectors"
   add_foreign_key "employees", "users"
-  add_foreign_key "functions", "employees"
   add_foreign_key "professors", "courses"
   add_foreign_key "professors", "employees"
   add_foreign_key "sectors", "employees"
