@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 20160612124307) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.integer  "function"
+    t.integer  "function",       default: 0
     t.integer  "sector_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "user_id"
     t.integer  "coordinator_id"
   end

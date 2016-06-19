@@ -24,4 +24,13 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  validates_presence_of :name, :data_nascimento,:num_identidade, :cpf, :cidade,
+                        :estado, :email,:login
+
+  validates_numericality_of :cpf, :num_identidade, :telefone, :celular
+
+  validates_uniqueness_of :num_identidade, :cpf, :email, :login
+
+
+
 end

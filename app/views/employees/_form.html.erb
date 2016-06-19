@@ -63,7 +63,7 @@
     <% end %>
   <div class="field">
     <%= f.label :function %><br>
-    <%= f.select :function, :colection => Employee.functions, :prompt => 'Please select'%>
+    <%= f.select :function, Employee.functions.keys.to_a, :prompt => 'Please select'%>
   </div>
 
   <div class="field">

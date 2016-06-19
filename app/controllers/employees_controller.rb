@@ -18,8 +18,8 @@ class EmployeesController < ApplicationController
   def new
     @employee = Employee.new
     @employee.build_user
-    @employee.build_professor
-    @employee.build_coordinator
+    # @employee.build_professor
+    # @employee.build_coordinator
 
   end
 
@@ -81,22 +81,23 @@ class EmployeesController < ApplicationController
       @user = User.all
     end
 
-    def set_professor
-      @professor = Professor.all
-    end
-
-    def set_coordenador
-      @coordinator = Coordinator.all
-    end
+    #
+    # def set_professor
+    #   @professor = Professor.all
+    # end
+    #
+    # def set_coordenador
+    #   @coordinator = Coordinator.all
+    # end
 
 
   # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:function, :sector_id, :set_coordenador,
-                                       :set_professor, :user_id, :set_user,
+      params.require(:employee).permit(:function, :sector_id, :user_id, :set_user,
                                        :user_attributes => [:id, :name, :data_nascimento,
                                                             :num_identidade, :cpf, :cidade,
                                                             :estado, :telefone, :celular, :email,
                                                             :login, :password, :password_confirmation])
     end
+
 end
