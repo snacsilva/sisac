@@ -10,6 +10,8 @@
 #
 
 class Coordinator < ActiveRecord::Base
-  belongs_to :user
-  has_one :course
+  belongs_to :employee
+  belongs_to :course
+
+  accepts_nested_attributes_for :employee
 end

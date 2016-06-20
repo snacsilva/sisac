@@ -1,6 +1,5 @@
 class CoordinatorsController < ApplicationController
   before_action :set_coordinator, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /coordinators
   # GET /coordinators.json
@@ -16,7 +15,8 @@ class CoordinatorsController < ApplicationController
   # GET /coordinators/new
   def new
     @coordinator = Coordinator.new
-    @coordinator.build_user
+    @coordinator.build_employee
+    @coordinator.build_employee.build_user
   end
 
   # GET /coordinators/1/edit
@@ -75,10 +75,10 @@ class CoordinatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coordinator_params
-      params.require(:coordinator).permit(:course_id, :user_id, :set_user,
+      params.require(:coordinator).permit(:course_id, :employee_attributes => [:user_id, :sector_id,
                                           :user_attributes => [:id, :name, :data_nascimento,
                                                                :num_identidade, :cpf, :cidade,
                                                                :estado, :telefone, :celular, :email,
-                                                               :login, :password, :password_confirmation])
+                                                               :login, :password, :password_confirmation]])
     end
 end

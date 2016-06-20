@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @discipline.nome %>
-</p>
+<h1>Disciplina</h1>
 
-<%= link_to 'Edit', edit_discipline_path(@discipline) %> |
-<%= link_to 'Back', disciplines_path %>
+  <h4>Nome:
+    <%= @discipline.nome %>
+  </h4>
+<%= link_to "Editar", edit_discipline_path(@discipline), :class => 'btn btn-primary' %>
+<%= link_to "Voltar", disciplines_path, :class => 'btn btn-primary' %>
