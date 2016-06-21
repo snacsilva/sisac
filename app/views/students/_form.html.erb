@@ -1,8 +1,7 @@
-
-<%= form_for @student do |f| %>
+<%= form_for(@student) do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this aluno from being saved:</h2>
 
       <ul>
       <% @student.errors.full_messages.each do |message| %>
@@ -12,61 +11,93 @@
     </div>
   <% end %>
 
-  <%= f.fields_for :user do |ff| %>
-    <div class="field">
-      <%= ff.label :name %><br>
-      <%= ff.text_field :name %>
+<%= f.fields_for :user do |ff| %>
+    <div class="form-group row">
+      <%= ff.label :name, "Nome", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :name, :class => 'form-control', :placeholder =>"Nome"%>
+      </div>
     </div>
-    <div class="field">
-       <%= f.label :course %><br>
-       <%= f.collection_select :course_id, Course.all, :id, :nome, :prompt => true %>
+    <div class="form-group row">
+      <%= ff.label :data_nascimento, "Data de Nascimento", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.date_select :data_nascimento, start_year: 1950 %>
+      </div>
     </div>
-    <div class="field">
-      <%= ff.label :data_nascimento %><br>
-      <%= ff.date_select :data_nascimento, start_year: 1950 %>
+    <div class="form-group row">
+      <%= ff.label :num_identidade, "Identidade", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :num_identidade, :class => 'form-control', :placeholder =>"Identidade"%>
+      </div>
     </div>
-    <div class="field">
-      <%= ff.label :num_identidade %><br>
-      <%= ff.text_field :num_identidade %>
+    <div class="form-group row">
+      <%= ff.label :cpf, "CPF", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :cpf, :class => 'form-control', :placeholder =>"CPF"%>
+      </div>
     </div>
-    <div class="field">
-      <%= ff.label :cpf %><br>
-      <%= ff.text_field :cpf %>
+    <div class="form-group row">
+      <%= ff.label :cidade, "Cidade", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :cidade, :class => 'form-control', :placeholder =>"Cidade"%>
+      </div>
     </div>
-    <div class="field">
-      <%= ff.label :cidade %><br>
-      <%= ff.text_field :cidade %>
+    <div class="form-group row">
+      <%= ff.label :estado, "Estado", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :estado, :class => 'form-control', :placeholder =>"Estado"%>
+      </div>
     </div>
-    <div class="field">
-      <%= ff.label :estado %><br>
-      <%= ff.text_field :estado %>
+    <div class="form-group row">
+      <%= ff.label :telefone, "Telefone", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :telefone, :class => 'form-control', :placeholder =>"Telefone"%>
+      </div>
     </div>
-    <div class="field">
-      <%= ff.label :telefone %><br>
-      <%= ff.text_field :telefone %>
+    <div class="form-group row">
+      <%= ff.label :celular, "Celular", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :celular, :class => 'form-control', :placeholder =>"Celular"%>
+      </div>
     </div>
-    <div class="field">
-      <%= ff.label :celular %><br>
-      <%= ff.text_field :celular %>
-    </div>
-    <div class="field">
-      <%= ff.label :email %><br>
-      <%= ff.text_field :email %>
-    </div>
+    <div class="form-group row">
+      <%= ff.label :email, "E-mail", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :email, :class => 'form-control', :placeholder =>"E-mail"%>
+      </div>
+  </div>
+  <div class="form-group row">
+      <%= ff.label :login, "Login", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.text_field :login, :class => 'form-control', :placeholder =>"Login"%>
+      </div>
+  </div>
+  <div class="form-group row">
+      <%= ff.label :passwd, "Senha", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.password_field :passwd, :class => 'form-control' %>
+      </div>
+  </div>
+  <div class="form-group row">
+      <%= ff.label :passwd_conformation, "Confirmar Senha", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.password_field :passwd_conformation, :class => 'form-control'%>
+      </div>
+  </div>
+<% end %>
 
+<div class="form-group row">
+    <%= f.label :course_id, "Curso", :class => 'col-sm-2 form-control-label' %>
+    <div class="col-sm-10">
+        <%= f.collection_select(:course_id, Course.all, :id, :nome, {include_blank: true}, {:class => 'form-control'}) %>
     </div>
-    <div class="field">
-      <%= ff.label :password %><br>
-      <%= ff.password_field :password %>
-    </div>
-    <div class="field">
-      <%= ff.label :password_confirmation %><br>
-      <%= ff.password_field :password_confirmation %>
-    </div>
-  <% end %>
+</div>
 
+<div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+        <%= link_to "Cancelar", students_path(@student), :class => 'btn btn-primary' %>
+    </div>
+</div>
 
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                students_path, :class => 'btn btn-default' %>
 <% end %>

@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_one :coordinator
   has_one :student
 
-  has_secure_password
+  #has_secure_password
 
   validates_presence_of :name, :data_nascimento,:num_identidade, :cpf, :cidade,
                         :estado, :email
