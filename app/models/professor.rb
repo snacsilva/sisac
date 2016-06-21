@@ -10,7 +10,8 @@
 #
 
 class Professor < ActiveRecord::Base
+  belongs_to :curso
   belongs_to :employee
-  has_many :courses
   has_many :classes
+  accepts_nested_attributes_for :employee
 end

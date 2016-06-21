@@ -16,10 +16,7 @@ class Employee < ActiveRecord::Base
   belongs_to :user
   has_one :coordinator
   has_one :professor
-
   belongs_to :sector
-
-
   accepts_nested_attributes_for :user
 
   # accepts_nested_attributes_for :professor

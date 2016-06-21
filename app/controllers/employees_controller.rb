@@ -17,10 +17,6 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
-    @employee.build_user
-    # @employee.build_professor
-    # @employee.build_coordinator
-
   end
 
   # GET /employees/1/edit
@@ -93,11 +89,7 @@ class EmployeesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:function, :sector_id, :user_id, :set_user,
-                                       :user_attributes => [:id, :name, :data_nascimento,
-                                                            :num_identidade, :cpf, :cidade,
-                                                            :estado, :telefone, :celular, :email,
-                                                            :login, :password, :password_confirmation])
+      params.require(:employee).permit(:function, :sector_id)
     end
 
 end

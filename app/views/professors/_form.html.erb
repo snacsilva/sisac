@@ -11,11 +11,101 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :course_id %><br>
-    <%= f.text_field :course_id %>
+  <%= f.fields_for :employee do |ff| %>
+    <%= ff.fields_for :user do |fu| %>
+      <div class="form-group row">
+        <%= fu.label :name, "Nome", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :name, :class => 'form-control', :placeholder =>"Nome"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :data_nascimento, "Data de Nascimento", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.date_select :data_nascimento, start_year: 1950 %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :num_identidade, "Identidade", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :num_identidade, :class => 'form-control', :placeholder =>"Identidade"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :cpf, "CPF", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :cpf, :class => 'form-control', :placeholder =>"CPF"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :cidade, "Cidade", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :cidade, :class => 'form-control', :placeholder =>"Cidade"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :estado, "Estado", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :estado, :class => 'form-control', :placeholder =>"Estado"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :telefone, "Telefone", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :telefone, :class => 'form-control', :placeholder =>"Telefone"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :celular, "Celular", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :celular, :class => 'form-control', :placeholder =>"Celular"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :email, "E-mail", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :email, :class => 'form-control', :placeholder =>"E-mail"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :login, "Login", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.text_field :login, :class => 'form-control', :placeholder =>"Login"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :passwd, "Senha", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.password_field :passwd, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= fu.label :passwd_conformation, "Confirmar Senha", :class => 'col-sm-2 form-control-label' %>
+        <div class="col-sm-10">
+          <%= fu.password_field :passwd_conformation, :class => 'form-control'%>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-group row">
+      <%= ff.label :sector_id, "Setor", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= ff.collection_select(:sector_id, Sector.all, :id, :name, {include_blank: true}, {:class => 'form-control'}) %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+      <%= f.label :course_id, "Curso", :class => 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= f.collection_select(:course_id, Course.all, :id, :nome, {include_blank: true}, {:class => 'form-control'}) %>
+      </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+        <%= link_to "Cancelar", professors_path(@professor), :class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>

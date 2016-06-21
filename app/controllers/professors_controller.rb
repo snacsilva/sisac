@@ -15,6 +15,8 @@ class ProfessorsController < ApplicationController
   # GET /professors/new
   def new
     @professor = Professor.new
+    @professor.build_employee
+    @professor.build_employee.build_user
   end
 
   # GET /professors/1/edit
@@ -69,6 +71,8 @@ class ProfessorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params
-      params.require(:professor).permit(:course_id, :classe_id)
+      params.require(:professor).permit(:course_id, :classe_id,
+        :employee_attributes => [:sector_id, :user_id,
+          :user_attributes => [:name, :data_nascimento, :num_identidade, :cpf, :cidade, :estado, :telefone, :celular, :email, :login, :password, :password_confirmation]])
     end
 end

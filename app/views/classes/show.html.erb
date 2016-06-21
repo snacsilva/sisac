@@ -1,24 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Codigo:</strong>
-  <%= @class.codigo %>
-</p>
+<h1>Curso</h1>
 
-<p>
-  <strong>Course:</strong>
-  <%= @class.course.nome %>
-</p>
-
-<p>
-  <strong>Discipline:</strong>
-  <%= @class.discipline.nome %>
-</p>
-
-<p>
-  <strong>Num aluno:</strong>
-  <%= @class.num_aluno %>
-</p>
-
-<%= link_to 'Edit', edit_classe_path(@class) %> |
-<%= link_to 'Back', classes_path %>
+<h4>Código:
+    <%= @class.codigo %>
+</h4>
+<h4>Disciplina:
+    <%= @class.discipline.nome %>
+</h4>
+<h4>Curso:
+    <%= @class.num_aluno %>
+</h4>
+<h4>Limite de Alunos:
+    <%= @class.num_aluno %>
+</h4>
+<h4>Professor:
+    <%= @class.professor %>
+</h4>
+<%= link_to "Editar", edit_classe_path(@class), :class => 'btn btn-primary' %>
+<%= link_to "Voltar", classes_path, :class => 'btn btn-primary' %>
