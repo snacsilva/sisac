@@ -11,6 +11,75 @@
     </div>
   <% end %>
 
+    <%= f.fields_for :user do |ff| %>
+        <div class="form-group row">
+          <%= ff.label :name, "Nome", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :name, :class => 'form-control', :placeholder =>"Nome"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :data_nascimento, "Data de Nascimento", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.date_select :data_nascimento, start_year: 1950 %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :num_identidade, "Identidade", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :num_identidade, :class => 'form-control', :placeholder =>"Identidade"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :cpf, "CPF", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :cpf, :class => 'form-control', :placeholder =>"CPF"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :cidade, "Cidade", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :cidade, :class => 'form-control', :placeholder =>"Cidade"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :estado, "Estado", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :estado, :class => 'form-control', :placeholder =>"Estado"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :telefone, "Telefone", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :telefone, :class => 'form-control', :placeholder =>"Telefone"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :celular, "Celular", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :celular, :class => 'form-control', :placeholder =>"Celular"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :email, "E-mail", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.text_field :email, :class => 'form-control', :placeholder =>"E-mail"%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :passwd, "Senha", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.password_field :passwd, :class => 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= ff.label :passwd_conformation, "Confirmar Senha", :class => 'col-sm-2 form-control-label' %>
+          <div class="col-sm-10">
+            <%= ff.password_field :passwd_conformation, :class => 'form-control'%>
+          </div>
+        </div>
+    <% end %>
+
     <div class="form-group row">
       <%= f.label :sector_id, "Setor", :class => 'col-sm-2 form-control-label' %>
       <div class="col-sm-10">
@@ -19,7 +88,7 @@
     </div>
 
     <div class="form-group row">
-      <%= f.label :function %>
+      <%= f.label :function, "Função", :class => 'col-sm-2 form-control-label'  %>
       <div class="col-sm-10">
         <%= f.select :function, Employee.functions.keys.to_a, :prompt => 'Please select'%>
       </div>
