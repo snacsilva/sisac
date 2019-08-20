@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -24,30 +23,27 @@ ActiveRecord::Schema.define(version: 20160612124307) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "professor_id"
+    t.index ["course_id"], name: "index_classes_on_course_id", using: :btree
+    t.index ["discipline_id"], name: "index_classes_on_discipline_id", using: :btree
+    t.index ["professor_id"], name: "index_classes_on_professor_id", using: :btree
   end
-
-  add_index "classes", ["course_id"], name: "index_classes_on_course_id", using: :btree
-  add_index "classes", ["discipline_id"], name: "index_classes_on_discipline_id", using: :btree
-  add_index "classes", ["professor_id"], name: "index_classes_on_professor_id", using: :btree
 
   create_table "coordinators", force: :cascade do |t|
     t.integer  "course_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "employee_id"
+    t.index ["course_id"], name: "index_coordinators_on_course_id", using: :btree
+    t.index ["employee_id"], name: "index_coordinators_on_employee_id", using: :btree
   end
-
-  add_index "coordinators", ["course_id"], name: "index_coordinators_on_course_id", using: :btree
-  add_index "coordinators", ["employee_id"], name: "index_coordinators_on_employee_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "student_id"
+    t.index ["student_id"], name: "index_courses_on_student_id", using: :btree
   end
-
-  add_index "courses", ["student_id"], name: "index_courses_on_student_id", using: :btree
 
   create_table "disciplines", force: :cascade do |t|
     t.string   "name"
@@ -62,30 +58,27 @@ ActiveRecord::Schema.define(version: 20160612124307) do
     t.datetime "updated_at",                 null: false
     t.integer  "user_id"
     t.integer  "coordinator_id"
+    t.index ["coordinator_id"], name: "index_employees_on_coordinator_id", using: :btree
+    t.index ["sector_id"], name: "index_employees_on_sector_id", using: :btree
+    t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
   end
-
-  add_index "employees", ["coordinator_id"], name: "index_employees_on_coordinator_id", using: :btree
-  add_index "employees", ["sector_id"], name: "index_employees_on_sector_id", using: :btree
-  add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
   create_table "professors", force: :cascade do |t|
     t.integer  "course_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "employee_id"
+    t.index ["course_id"], name: "index_professors_on_course_id", using: :btree
+    t.index ["employee_id"], name: "index_professors_on_employee_id", using: :btree
   end
-
-  add_index "professors", ["course_id"], name: "index_professors_on_course_id", using: :btree
-  add_index "professors", ["employee_id"], name: "index_professors_on_employee_id", using: :btree
 
   create_table "sectors", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "employee_id"
+    t.index ["employee_id"], name: "index_sectors_on_employee_id", using: :btree
   end
-
-  add_index "sectors", ["employee_id"], name: "index_sectors_on_employee_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -93,11 +86,10 @@ ActiveRecord::Schema.define(version: 20160612124307) do
     t.integer  "classe_id"
     t.integer  "user_id"
     t.integer  "course_id"
+    t.index ["classe_id"], name: "index_students_on_classe_id", using: :btree
+    t.index ["course_id"], name: "index_students_on_course_id", using: :btree
+    t.index ["user_id"], name: "index_students_on_user_id", using: :btree
   end
-
-  add_index "students", ["classe_id"], name: "index_students_on_classe_id", using: :btree
-  add_index "students", ["course_id"], name: "index_students_on_course_id", using: :btree
-  add_index "students", ["user_id"], name: "index_students_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
